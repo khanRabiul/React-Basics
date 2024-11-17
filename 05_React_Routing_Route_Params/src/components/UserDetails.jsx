@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
-
+// importing the Params
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const UserDetails = () => {
+// Destructuring id from Params
+  const {id} = useParams();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    // Fetch data based on the user ID from the URL
     axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
       .then((response) => {
         setUser(response.data);
       })
       .catch((error) => console.error("Error fetching user details:", error));
-  }, []);
+  }, [id]); // id as dependency to re-render if the 'id' changes
 
   if (!user) {
     return <div className="text-center my-10">Loading...</div>;

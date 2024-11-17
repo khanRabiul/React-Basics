@@ -18,7 +18,10 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={<Blog />} />
-        <Route path="" element={<UserDetails />} />
+        {/* Step 02: path="/user/:id" is a dynamic route where id is the parameter that will change based on the user clicked on the Home page.
+        :id means that part of the URL is a dynamic value and can be accessed in the UserDetails component.
+        */}
+        <Route path="/user/:id" element={<UserDetails />} />
       </Routes>
       <footer>
         <Footer />

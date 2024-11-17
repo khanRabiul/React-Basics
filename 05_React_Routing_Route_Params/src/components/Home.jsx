@@ -7,7 +7,8 @@ const Home = () => {
 
   // Fetch users from JSONPlaceholder
   useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/users")
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
       .then((response) => {
         setUsers(response.data);
       })
@@ -19,10 +20,17 @@ const Home = () => {
       <h1 className="text-3xl font-bold text-center mb-6">User List</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {users.map((user) => (
-          <div key={user.id} className="p-4 border rounded shadow hover:shadow-lg">
+          <div
+            key={user.id}
+            className="p-4 border rounded shadow hover:shadow-lg"
+          >
             <h2 className="text-xl font-bold">{user.name}</h2>
             <p className="text-gray-600">{user.email}</p>
-            <Link to={``} className="text-blue-500 hover:underline mt-2 block">
+            {/* Step 01: As we are using map() here we have the access the id of every user's. To access = user.id and use as variable this path will be shown on top of the browser addressbar */}
+            <Link
+              to={`/user/${user.id}`}
+              className="text-blue-500 hover:underline mt-2 block"
+            >
               View Details
             </Link>
           </div>
